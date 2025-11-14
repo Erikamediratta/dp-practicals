@@ -1,19 +1,25 @@
-def caesar(text, shift):
-    result = ""
-    for c in text:
-        if c.isalpha():
-            base = 65 if c.isupper() else 97
-            result += chr((ord(c) - base + shift) % 26 + base)
+def encrypt_caesar(text, shift):
+    encrypted = ""
+    for char in text:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            new_char = chr((ord(char) - base + shift) % 26 + base)
+            encrypted += new_char
         else:
-            result += c
-    return result
-    
-msg = "Hello World"
-shift = 3
+            encrypted += char
+    return encrypted
 
-enc = caesar(msg, shift)
-dec = caesar(enc, -shift)
 
-print(f"Original: {msg}")
-print(f"Encrypted: {enc}")
-print(f"Decrypted: {dec}")
+def decrypt_caesar(text, shift):
+    return encrypt_caesar(text, -shift)
+
+
+# Example usage:
+message = input("Enter a message: ")
+shift_value = int(input("Enter shift number: "))
+
+encrypted_message = encrypt_caesar(message, shift_value)
+print("Encrypted:", encrypted_message)
+
+decrypted_message = decrypt_caesar(encrypted_message, shift_value)
+print("Decrypted:", decrypted_message)
