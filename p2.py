@@ -14,7 +14,7 @@ def decrypt_caesar(text, shift):
     return encrypt_caesar(text, -shift)
 
 
-# Example usage:
+
 message = input("Enter a message: ")
 shift_value = int(input("Enter shift number: "))
 
